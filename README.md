@@ -1,16 +1,33 @@
-## Hi there 👋
+## 자동매매 예제 (페이퍼 트레이딩)
 
-<!--
-**adrjts/adrjts** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+이 저장소에는 **이동평균선 교차 전략**을 사용하는 간단한 자동매매 예제가 포함되어 있습니다.
 
-Here are some ideas to get you started:
+> 주의: `trading_bot.py`는 실제 주문을 내지 않습니다. 학습/실험용 페이퍼 트레이딩입니다.
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+### 실행 방법
+
+```bash
+python3 trading_bot.py --symbol BTCUSDT --interval 1m --short 7 --long 25 --cash 1000000 --poll 20
+```
+
+### 파라미터
+
+- `--symbol`: 거래 심볼 (예: `BTCUSDT`)
+- `--interval`: 캔들 주기 (예: `1m`, `5m`, `1h`)
+- `--short`: 단기 이동평균 기간
+- `--long`: 장기 이동평균 기간
+- `--cash`: 초기 자산
+- `--poll`: 데이터 조회 간격(초)
+
+### 전략 개요
+
+- 단기선이 장기선을 상향 돌파하면 `BUY`
+- 단기선이 장기선을 하향 돌파하면 `SELL`
+- 그 외에는 `HOLD`
+
+### 개선 아이디어
+
+- 손절/익절 규칙 추가
+- 수수료/슬리피지 반영
+- 백테스트 모드 추가
+- 거래소 인증키 기반 실주문 모드(충분한 검증 후)
